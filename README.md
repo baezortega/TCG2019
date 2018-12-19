@@ -27,9 +27,9 @@ R --version
 
 The current R version is also shown when opening RStudio or the R Console. Similarly, you should be able to check your current version of Python by running the command `python --version`.
 
-The scripts require the following R packages: [`ape`](https://cran.r-project.org/web/packages/ape/index.html), [`RColorBrewer`](https://cran.r-project.org/web/packages/RColorBrewer/index.html), [`stringr`](https://cran.r-project.org/web/packages/stringr/index.html), [`sigfit`](https://github.com/kgori/sigfit).
+The scripts require the following R packages: [**`ape`**](https://cran.r-project.org/web/packages/ape/index.html), [**`RColorBrewer`**](https://cran.r-project.org/web/packages/RColorBrewer/index.html), [**`stringr`**](https://cran.r-project.org/web/packages/stringr/index.html), [**`sigfit`**](https://github.com/kgori/sigfit).
 
-Although care has been taken to make the code distribution-independent, it is possible that some of the scripts work only on Unix (MacOS/Linux) systems, and need to be modified in order to run on Windows systems.
+Although care has been taken to make the code distribution-independent, it is possible that some of the scripts work only on Unix/MacOS systems, and need to be modified in order to run on Windows systems.
 
 Please note that some of the scripts may take considerable time to run, and some of the intermediate files generated will occupy up to a few gigabytes.
 
@@ -51,7 +51,7 @@ This step is carried out by the Python script `1_ExtractVcfData.py`, which is lo
 scripts/1_ExtractVcfData.py <input-variants.vcf.gz> <output-dir>
 ```
 
-We run this script for each of the two VCF files produced by Somatypus, which should be located in the `data/original` directory, storing the output files in `data/processed`.
+We run this script for each of the two original VCF files produced by [Somatypus](https://github.com/baezortega/somatypus), which should be located in the `data/original` directory, and store the output files in `data/processed`.
 
 ```
 scripts/1_ExtractVcfData.py data/original/Somatypus_CTVT_SNVs_1052.vcf.gz data/processed

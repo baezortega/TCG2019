@@ -6,19 +6,19 @@
 
 # TO RUN THIS SCRIPT IN THE TERMINAL
 # ----------------------------------
-# Run the commands below in the terminal, replacing '/path/to/abo2018' with the 
-# path to the abo2018 directory.
+# Run the commands below in the terminal, replacing '/path/to/TCG2019' with the 
+# path to the TCG2019 directory.
 #
-#    cd /path/to/abo2018
+#    cd /path/to/TCG2019
 #    Rscript scripts/2_ImportVariants.R
 
 
 # TO RUN THIS SCRIPT IN RSTUDIO
 # -----------------------------
-# Before starting, run the line below in RStudio, replacing '/path/to/abo2018' with 
-# the path to the abo2018 directory.
+# Before starting, run the line below in RStudio, replacing '/path/to/TCG2019' with 
+# the path to the TCG2019 directory.
 #
-#    setwd("path/to/abo2018")
+#    setwd("path/to/TCG2019")
 
 
 # If the paths to the input or output files differ from the ones 
@@ -65,11 +65,11 @@ library(stringr)
 # Load data
 cat("Importing variant data...\n")
 
-snvs.metadata = read.table(paste0(INPUT$SNVS.PREFIX, SUFFIX$Meta), header=T)
+snvs.metadata = read.table(paste0(INPUT$SNVS.PREFIX, SUFFIX$Meta), header=T, stringsAsFactors=F)
 snvs.nr = read.table(paste0(INPUT$SNVS.PREFIX, SUFFIX$NR), header=T, check.names=F)
 snvs.nv = read.table(paste0(INPUT$SNVS.PREFIX, SUFFIX$NV), header=T, check.names=F)
 
-indels.metadata = read.table(paste0(INPUT$INDEL.PREFIX, SUFFIX$Meta), header=T)
+indels.metadata = read.table(paste0(INPUT$INDEL.PREFIX, SUFFIX$Meta), header=T, stringsAsFactors=F)
 indels.nr = read.table(paste0(INPUT$INDEL.PREFIX, SUFFIX$NR), header=T, check.names=F)
 indels.nv = read.table(paste0(INPUT$INDEL.PREFIX, SUFFIX$NV), header=T, check.names=F)
 

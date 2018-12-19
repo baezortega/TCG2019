@@ -6,19 +6,19 @@
 
 # TO RUN THIS SCRIPT IN THE TERMINAL
 # ----------------------------------
-# Run the commands below in the terminal, replacing '/path/to/abo2018' with 
-# the path to the abo2018 directory.
+# Run the commands below in the terminal, replacing '/path/to/TCG2019' with 
+# the path to the TCG2019 directory.
 #
-#    cd /path/to/abo2018
+#    cd /path/to/TCG2019
 #    Rscript scripts/4_ExploratoryAnalyses.R
 
 
 # TO RUN THIS SCRIPT IN RSTUDIO
 # -----------------------------
-# Before starting, run the line below in RStudio, replacing '/path/to/abo2018' with 
-# the path to the abo2018 directory.
+# Before starting, run the line below in RStudio, replacing '/path/to/TCG2019' with 
+# the path to the TCG2019 directory.
 #
-#    setwd("path/to/abo2018")
+#    setwd("path/to/TCG2019")
 
 
 # If the paths to the input or output files differ from the ones 

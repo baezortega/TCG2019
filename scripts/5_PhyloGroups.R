@@ -6,19 +6,19 @@
 
 # TO RUN THIS SCRIPT IN THE TERMINAL
 # ----------------------------------
-# Run the commands below in the terminal, replacing '/path/to/abo2018' with 
-# the path to the abo2018 directory.
+# Run the commands below in the terminal, replacing '/path/to/TCG2019' with 
+# the path to the TCG2019 directory.
 #
-#    cd /path/to/abo2018
+#    cd /path/to/TCG2019
 #    Rscript scripts/5_PhyloGroups.R
 
 
 # TO RUN THIS SCRIPT IN RSTUDIO
 # -----------------------------
-# Before starting, run the line below in RStudio, replacing '/path/to/abo2018' with 
-# the path to the abo2018 directory.
+# Before starting, run the line below in RStudio, replacing '/path/to/TCG2019' with 
+# the path to the TCG2019 directory.
 #
-#    setwd("path/to/abo2018")
+#    setwd("path/to/TCG2019")
 
 
 # If the paths to the input or output files differ from the ones 
@@ -303,19 +303,24 @@ for (j in 1:NG) {
 }
 
 # Ancestral groups: we define a min. number of samples required for ancestral variants
-# Basal trunk (ancestral) [A1] - Min. samples for ancestral vars.: 534/539
-# India (ancestral) [A3]       - Min. samples for ancestral vars.: 4/6
-group.list = list(c(match("A1", group.ids), 534),
-                  c(match("A3", group.ids), 4))
-for (grp in group.list) {
-    j = grp[1]
-    min.samples = grp[2]
-    grp.idx = phylo.groups.idx[, j]
-    ancs.idx = 
-        rowSums(snvs.nv[tumour.only.idx, tumours.tree][, grp.idx] >= MIN.READS) >= min.samples
-    group.unique.idx[, j] = ancs.idx
-    cat("  ", group.names[j], ": ", sum(group.unique.idx[, j]), " unique variants\n", sep="")
-}
+# Basal trunk (ancestral) [A1]
+# Min. samples for ancestral vars.: 534/539
+MIN.SAMPLES = 534
+j = match("A1", group.ids)
+grp.idx = phylo.groups.idx[, j]
+group.unique.idx[, j] = 
+    rowSums(snvs.nv[tumour.only.idx, tumours.tree][, grp.idx] >= MIN.READS) >= MIN.SAMPLES
+cat("  ", group.names[j], ": ", sum(group.unique.idx[, j]), " unique variants\n", sep="")
+
+# India (ancestral) [A3]
+# Min. samples for ancestral vars.: 4/6
+MIN.SAMPLES = 4
+j = match("A3", group.ids)
+grp.idx = phylo.groups.idx[, j]
+group.unique.idx[, j] = 
+    rowSums(snvs.nv[tumour.only.idx, tumours.tree][, grp.idx] >= MIN.READS) >= MIN.SAMPLES &
+    rowSums(snvs.nv[tumour.only.idx, tumours.tree][, !grp.idx] >= MIN.READS) == 0
+cat("  ", group.names[j], ": ", sum(group.unique.idx[, j]), " unique variants\n", sep="")
 
 # Non-India (ancestral) [A2] (special case)
 # Min. samples for ancestral vars.: ≥1 sample in [1] + ≥1 sample in [54-56] + 0 samples in [A3]
@@ -335,8 +340,8 @@ cat("  ", group.names[k], ": ", sum(group.unique.idx[, k]), " unique variants\n"
 
 
 # Identify and discard variants that are ancestral to groups with long trunks
-# (this is to ensure that variants occurred after the group's arrival to its country;
-# see Supplementary Methods in Baez-Ortega et al., 2018)
+# (this is to ensure that variants occurred after the group's arrival to its
+# country; see Supplementary Methods)
 cat("\nDiscarding ancestral variants from some groups...\n")
 
 # List of groups to correct and min. #samples required for ancestral variants:
