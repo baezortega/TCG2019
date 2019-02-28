@@ -143,7 +143,7 @@ This step is carried out by the R script `8_DinucAnalyses.R`, which is located i
 Rscript scripts/8_DinucAnalyses.R
 ```
 
-This script produces an output RData file (`data/processed/Dinucleotides.RData`) containing the mutational spectrum of dinucleotide somatic variants, and the counts of somatic CC>TT variants per phylogenetic group. It also produces a plot of the mutational spectrum of somatic dinucleotide variants (`output/Somatic_Dinucleotide_Spectrum.pdf`).
+This script produces an output RData file (`data/processed/Dinucleotides.RData`) containing the mutational spectrum of dinucleotide somatic variants, and the counts of somatic CC>TT variants per phylogenetic group. It also produces a plot of the mutational spectrum of somatic dinucleotide variants (`output/Dinucleotide_Spectrum.pdf`).
 
 ---
 
