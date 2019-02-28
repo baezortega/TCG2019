@@ -27,7 +27,7 @@ R --version
 
 The current R version is also shown when opening RStudio or the R Console. Similarly, you should be able to check your current version of Python by running the command `python --version`.
 
-The scripts require the following R packages: [**`ape`**](https://cran.r-project.org/web/packages/ape/index.html), [**`RColorBrewer`**](https://cran.r-project.org/web/packages/RColorBrewer/index.html), [**`stringr`**](https://cran.r-project.org/web/packages/stringr/index.html), [**`sigfit`**](https://github.com/kgori/sigfit).
+The scripts require the following R packages: [**`ape`**](https://cran.r-project.org/web/packages/ape/index.html), [**`dNdScv`**](https://github.com/im3sanger/dndscv), [**`RColorBrewer`**](https://cran.r-project.org/web/packages/RColorBrewer/index.html), [**`stringr`**](https://cran.r-project.org/web/packages/stringr/index.html), [**`sigfit`**](https://github.com/kgori/sigfit).
 
 Although care has been taken to make the code distribution-independent, it is possible that some of the scripts work only on Unix/MacOS systems, and need to be modified in order to run on Windows systems.
 
@@ -51,11 +51,12 @@ This step is carried out by the Python script `1_ExtractVcfData.py`, which is lo
 scripts/1_ExtractVcfData.py <input-variants.vcf.gz> <output-dir>
 ```
 
-We run this script for each of the two original VCF files produced by [Somatypus](https://github.com/baezortega/somatypus), which should be located in the `data/original` directory, and store the output files in `data/processed`.
+We run this script on the VCF files of SNVs and indels produced by [Somatypus](https://github.com/baezortega/somatypus), as well as on the file of genotyped dinucleotide variants (these files should be located in the `data/original` directory), and store the output files in `data/processed`.
 
 ```
 scripts/1_ExtractVcfData.py data/original/Somatypus_CTVT_SNVs_1052.vcf.gz data/processed
 scripts/1_ExtractVcfData.py data/original/Somatypus_CTVT_Indels_1052.vcf.gz data/processed
+scripts/1_ExtractVcfData.py data/original/Somatypus_CTVT_DNVs_1051.vcf.gz data/processed
 ```
 
 The script produces three tab-delimited text files for each VCF, labelled with the suffixes `Metadata`, `NR` and `NV`. These are the files that will be read into R in the next step.
@@ -70,7 +71,7 @@ This step is carried out by the R script `2_ImportVariants.R`, which is located 
 Rscript scripts/2_ImportVariants.R
 ```
 
-This script produces an output RData file (`data/processed/VariantTables.RData`) containing the data tables for SNVs and indels, together with indices to distinguish somatic and germline variants.
+This script produces an output RData file (`data/processed/VariantTables.RData`) containing the data tables for SNVs, indels and DNVs, together with indices to distinguish somatic ('tumour-only') and germline variants.
 
 ---
 
@@ -130,7 +131,7 @@ This step is carried out by the R script `7_SignatureAnalyses.R`, which is locat
 Rscript scripts/7_SignatureAnalyses.R
 ```
 
-This script produces ...
+This script produces an output RData file (`data/processed/Signatures_Exposures.RData`) containing the mutational signatures and signature exposures inferred from the CTVT phylogenetic groups. It also produces a tab-delimited file containing the inferred mutational signatures (`output/Mutational_Signatures_Table.tsv`), and plots of the mutational spectra, signatures and signature exposures in each group (`output/Mutational_Signatures_Plots/` folder).
 
 ---
 
@@ -142,7 +143,7 @@ This step is carried out by the R script `8_DinucAnalyses.R`, which is located i
 Rscript scripts/8_DinucAnalyses.R
 ```
 
-This script produces ...
+This script produces an output RData file (`data/processed/Dinucleotides.RData`) containing the mutational spectrum of dinucleotide somatic variants, and the counts of somatic CC>TT variants per phylogenetic group. It also produces a plot of the mutational spectrum of somatic dinucleotide variants (`output/Somatic_Dinucleotide_Spectrum.pdf`).
 
 ---
 
