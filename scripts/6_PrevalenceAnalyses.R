@@ -65,9 +65,9 @@ cat("\n\n")
 
 # Load input data
 cat("Loading data...\n")
+human.counts = read.table(INPUT$MUT.COUNTS, sep="\t", header=T, stringsAsFactors=F)
 load(INPUT$VAR.TABLES)
 load(INPUT$PHYLO.GROUPS)
-human.counts = read.table(INPUT$MUT.COUNTS, sep="\t", header=T, stringsAsFactors=F)
 
 
 # Calculate mutation prevalence in human cancers

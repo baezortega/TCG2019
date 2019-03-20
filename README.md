@@ -2,7 +2,7 @@
 
 _Adrian Baez-Ortega  
 Transmissible Cancer Group, University of Cambridge  
-2018_
+2018–2019_
 
 This repository contains custom R and Python scripts which can be used to replicate the analyses performed in Baez-Ortega _et al._, 2019 [**UNPUBLISHED**]. The set-up and usage of the data and scripts are explained below.
 
@@ -147,7 +147,7 @@ This script produces an output RData file (`data/processed/Dinucleotides.RData`)
 
 ---
 
-### Step 9. Inference of associations between signature 7 exposure, CC>TT mutations and latitude
+### Step 9. Association analyses of signature 7 exposure, CC>TT mutations and latitude
 
 This step is carried out by the R script `9_UV-LatAnalyses.R`, which is located in the [`scripts`](scripts) directory and can be run either from RStudio (following the instructions at the beginning of the script), or from the terminal using the `Rscript` command as follows. 
 
