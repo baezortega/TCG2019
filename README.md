@@ -65,7 +65,7 @@ The script produces three tab-delimited text files for each VCF, labelled with t
 
 ### Step 2. Variant import and classification
 
-This step is carried out by the R script `2_ImportVariants.R`, which is located in the [`scripts`](scripts) directory and can be run either from RStudio (following the instructions at the beginning of the script), or from the terminal using the `Rscript` command as follows. (Depending on your installation, you may have to replace `Rscript` with **`/Library/Frameworks/R.framework/Resources/bin/Rscript`**.)
+This step is carried out by the R script `2_ImportVariants.R`, which is located in the [`scripts`](scripts) directory and can be run either from RStudio (following the instructions at the beginning of the script), or from the terminal using the `Rscript` command as follows. **(Depending on your installation, you may have to replace `Rscript` with `/Library/Frameworks/R.framework/Resources/bin/Rscript`.)**
 
 ```
 Rscript scripts/2_ImportVariants.R
