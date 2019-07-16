@@ -171,7 +171,7 @@ This script produces ...
 
 ---
 
-### Step 11. Gene expression analyses
+### Step 11. Gene expression and mutation burden analyses
 
 This step is carried out by the R script `11_ExpressionAnalyses.R`, which is located in the [`scripts`](scripts) directory and can be run either from RStudio (following the instructions at the beginning of the script), or from the terminal using the `Rscript` command as follows. 
 
@@ -183,24 +183,12 @@ This script produces ...
 
 ---
 
-### Step 12. Somatic mutation burden analyses incorporating gene expression and transcriptional strand information
+### Step 12. Selection analyses
 
-This step is carried out by the R script `12_BurdenAnalyses.R`, which is located in the [`scripts`](scripts) directory and can be run either from RStudio (following the instructions at the beginning of the script), or from the terminal using the `Rscript` command as follows. 
-
-```
-Rscript scripts/12_BurdenAnalyses.R
-```
-
-This script produces ...
-
----
-
-### Step 13. Selection analyses
-
-This step is carried out by the R script `13_SelectionAnalyses.R`, which is located in the [`scripts`](scripts) directory and can be run either from RStudio (following the instructions at the beginning of the script), or from the terminal using the `Rscript` command as follows. 
+This step is carried out by the R script `12_SelectionAnalyses.R`, which is located in the [`scripts`](scripts) directory and can be run either from RStudio (following the instructions at the beginning of the script), or from the terminal using the `Rscript` command as follows. 
 
 ```
-Rscript scripts/13_SelectionAnalyses.R
+Rscript scripts/12_SelectionAnalyses.R
 ```
 
 This script produces ...
