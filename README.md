@@ -8,7 +8,9 @@ This repository contains custom R and Python scripts which can be used to replic
 
 If you use some of these methods for your own research, please use the following citation.
 
-#### A. Baez-Ortega _et al_. Somatic evolution and global expansion of an ancient transmissible cancer lineage. _Science_ 365, eaau9923 (2019). DOI: 10.1126/science.aau9923.
+---
+
+### A. Baez-Ortega _et al_. Somatic evolution and global expansion of an ancient transmissible cancer lineage. _Science_ 365, eaau9923 (2019). DOI: 10.1126/science.aau9923.
 
 ---
 
