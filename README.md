@@ -4,7 +4,11 @@ _Adrian Baez-Ortega
 Transmissible Cancer Group, University of Cambridge  
 2018–2019_
 
-This repository contains custom R and Python scripts which can be used to replicate the analyses performed in Baez-Ortega _et al._, 2019 [**UNPUBLISHED**]. The set-up and usage of the data and scripts are explained below.
+This repository contains custom R and Python scripts which can be used to replicate the analyses performed in Baez-Ortega _et al._, _Science_ 2019. The set-up and usage of the data and scripts are explained below.
+
+If you use some of these methods for your own research, please use the following citation.
+
+> **A. Baez-Ortega _et al_. Somatic evolution and global expansion of an ancient transmissible cancer lineage. _Science_ 365, eaau9923 (2019). DOI: 10.1126/science.aau9923.**
 
 ---
 
@@ -16,7 +20,7 @@ In order to run the scripts, the repository must first be cloned into a director
 git clone https://github.com/baezortega/TCG2019.git ~/Desktop/TCG2019
 ```
 
-Then, we need to download the necessary supporting data from the University of Cambridge Repository, which can be found at https://doi.org/10.17863/CAM.24962 [**DATA NOT YET AVAILABLE**]. All the supporting data files in this repository must be downloaded and **placed in the `TCG2019/data/original` directory**.
+Then, the necessary **supporting data** must be downloaded from the University of Cambridge Repository, accessible at https://doi.org/10.17863/CAM.24962. All the supporting data files must be downloaded and **placed in the `TCG2019/data/original` directory**.
 
 The scripts are written to run on **[Python](https://www.python.org/)** version 2.7.10 or later (not Python 3) and **[R](https://www.r-project.org/)** version 3.3.3 or later. You should be able to check your current version of R by running one of the commands below (depending on your installation):
 
@@ -27,9 +31,9 @@ R --version
 
 The current R version is also shown when opening RStudio or the R Console. Similarly, you should be able to check your current version of Python by running the command `python --version`.
 
-The scripts require the following R packages: [**`ape`**](https://cran.r-project.org/web/packages/ape/index.html), [**`dNdScv`**](https://github.com/im3sanger/dndscv), [**`RColorBrewer`**](https://cran.r-project.org/web/packages/RColorBrewer/index.html), [**`stringr`**](https://cran.r-project.org/web/packages/stringr/index.html), [**`sigfit`**](https://github.com/kgori/sigfit).
+The scripts require the following R packages: [**`ape`**](https://cran.r-project.org/web/packages/ape/index.html), [**`DESeq2`**](https://bioconductor.org/packages/release/bioc/html/DESeq2.html), [**`dNdScv`**](https://github.com/im3sanger/dndscv), [**`ensembldb`**](https://www.bioconductor.org/packages/release/bioc/html/ensembldb.html), [**`RColorBrewer`**](https://cran.r-project.org/web/packages/RColorBrewer/index.html), [**`sigfit`**](https://github.com/kgori/sigfit), [**`stringr`**](https://cran.r-project.org/web/packages/stringr/index.html), [**`tximport`**](https://bioconductor.org/packages/release/bioc/html/tximport.html).
 
-Although care has been taken to make the code distribution-independent, it is possible that some of the scripts work only on Unix/MacOS systems, and need to be modified in order to run on Windows systems.
+Although care has been taken to make the code distribution-independent, it is possible that some of the scripts only work on Unix/MacOS systems, and may need to be modified in order to run on Windows systems.
 
 Please note that some of the scripts may take considerable time to run, and some of the intermediate files generated will occupy up to a few gigabytes.
 
@@ -155,40 +159,28 @@ This step is carried out by the R script `9_UV-LatAnalyses.R`, which is located 
 Rscript scripts/9_UV-LatAnalyses.R
 ```
 
-This script produces ...
+This script produces an output table (`output/Phylo_Groups_Data.tsv`) with final information about each phylogenetic group, including signature exposures, numbers of CC>TT mutations and latitudes. It also produces plots and text summaries of the regression between CC>TT mutations, signature 7 exposure and absolute latitude (`output/UV_Regression_CC>TT_Sig7.pdf`, `output/UV_Regression_CC>TT_Latitude.pdf`, `output/UV_Regression_Stats_CC>TT_Sig7.txt`, `output/UV_Regression_Stats_CC>TT_Latitude.txt`)
 
 ---
 
-### Step 10. Processing and analysis of recurrent mutations
+### Step 10. Gene expression and mutation burden analyses
 
-This step is carried out by the R script `10_RecMutAnalyses.R`, which is located in the [`scripts`](scripts) directory and can be run either from RStudio (following the instructions at the beginning of the script), or from the terminal using the `Rscript` command as follows. 
+This step is carried out by the R script `10_ExpressionAnalyses.R`, which is located in the [`scripts`](scripts) directory and can be run either from RStudio (following the instructions at the beginning of the script), or from the terminal using the `Rscript` command as follows. 
 
 ```
-Rscript scripts/10_RecMutAnalyses.R
+Rscript scripts/10_ExpressionAnalyses.R
 ```
 
-This script produces ...
+This script produces plots of somatic mutation burden across mutation types and gene expression categories (`output/Gene_Expression_Mutation_Burden.pdf`).
 
 ---
 
-### Step 11. Gene expression and mutation burden analyses
+### Step 11. Selection analyses
 
-This step is carried out by the R script `11_ExpressionAnalyses.R`, which is located in the [`scripts`](scripts) directory and can be run either from RStudio (following the instructions at the beginning of the script), or from the terminal using the `Rscript` command as follows. 
-
-```
-Rscript scripts/11_ExpressionAnalyses.R
-```
-
-This script produces ...
-
----
-
-### Step 12. Selection analyses
-
-This step is carried out by the R script `12_SelectionAnalyses.R`, which is located in the [`scripts`](scripts) directory and can be run either from RStudio (following the instructions at the beginning of the script), or from the terminal using the `Rscript` command as follows. 
+This step is carried out by the R script `11_SelectionAnalyses.R`, which is located in the [`scripts`](scripts) directory and can be run either from RStudio (following the instructions at the beginning of the script), or from the terminal using the `Rscript` command as follows. 
 
 ```
-Rscript scripts/12_SelectionAnalyses.R
+Rscript scripts/11_SelectionAnalyses.R
 ```
 
 This script produces ...
