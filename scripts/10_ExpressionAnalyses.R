@@ -3,11 +3,6 @@
 
 # Adrian Baez-Ortega, 2019
 
-# Adapted from
-# http://bioconductor.org/packages/devel/bioc/vignettes/DESeq2/inst/doc/DESeq2.html
-# and
-# https://gist.github.com/stephenturner/f60c1934405c127f09a6
-
 
 # TO RUN THIS SCRIPT IN THE TERMINAL
 # ----------------------------------
@@ -60,7 +55,10 @@ INPUT = list(
 OUTPUT = list(
     
     # Path to output PDF
-    PLOTS = file.path("output", "Gene_Expression_Mutation_Burden.pdf")
+    PLOTS = file.path("output", "Gene_Expression_Mutation_Burden.pdf"),
+    
+    # Path to output RData
+    RDATA = file.path("data", "processed", "Mean_Transcript_Abundances.RData")
     
 )
 
@@ -295,7 +293,7 @@ exposures.per.quintile = retrieve_pars(quintile.fit, par="exposures")
 
 
 ## (5) Produce mutation burden plots
-cat("Plotting expression-relative mutation burden plots to output directory...\n")
+cat("\nPlotting expression-relative mutation burden plots to output directory...\n")
 
 pdf(OUTPUT$PLOTS, 10, 6)
 par(mar=c(4, 6.5, 4, 1))
@@ -395,5 +393,11 @@ for (mut in mut.types) {
     }
 }
 invisible(dev.off())
+
+
+# Save mean abundances and genes per abundance quintile and decile
+cat("Saving generated objects to file ", OUTPUT$RDATA, "...\n", sep="")
+save(mean.abundances, abund.quintiles, abund.deciles, genes.per.quintile, genes.per.decile,
+     file=OUTPUT$RDATA)
 
 cat("\nDone\n\n")
