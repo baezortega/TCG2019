@@ -185,4 +185,4 @@ This step is carried out by the R script `11_SelectionAnalyses.R`, which is loca
 Rscript scripts/11_SelectionAnalyses.R
 ```
 
-This script produces ...
+This script produces an output RData file (`data/processed/Selection_Results.RData`) containing the selection analysis results for the sets of genes tested. It also produces plots and tables of global and genewise dN/dS (`output/dNdS_Global_Plot.pdf`, `output/dNdS_Global_Tables.tsv`, `output/dNdS_Genewise_Table.tsv`).

@@ -67,7 +67,7 @@ OUTPUT = list(
     GENE.TBL = file.path("output", "dNdS_Genewise_Table.tsv"),
     
     # Path to output RData file
-    RDATA = file.path("data", "processed", "dNdScv_Output.RData")
+    RDATA = file.path("data", "processed", "Selection_Results.RData")
     
 )
 
