@@ -10,7 +10,7 @@ If you use some of these methods for your own research, please use the following
 
 ---
 
-#### A. Baez-Ortega _et al_. Somatic evolution and global expansion of an ancient transmissible cancer lineage. _Science_ 365, eaau9923 (2019). DOI: [10.1126/science.aau9923.](https://doi.org/10.1126/science.aau9923)
+#### A. Baez-Ortega _et al_. Somatic evolution and global expansion of an ancient transmissible cancer lineage. _Science_ 365, eaau9923 (2019). DOI: [10.1126/science.aau9923](https://doi.org/10.1126/science.aau9923).
 
 ---
 

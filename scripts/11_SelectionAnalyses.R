@@ -369,9 +369,9 @@ cat("\nWriting dN/dS tables to output directory...\n")
 types = c("wmis", "wnon", "wall")
 
 # We omit dN/dS estimates for splice-site mutations because of an intrinsic
-# bias of the model when applied to this type of mutations the dog genome.
-# This is likely due to differences between the reference exome regions
-# used by the model and the exome regions actually sequenced in the study.
+# bias of the model when applied to this type of mutations in the dog exome.
+# This is likely due to discrepancies between the reference exome regions
+# used by the model and the regions that were actually targeted in the study.
 cat("GLOBAL DN/DS FOR MISSENSE (wmis), NONSENSE (wnon) AND ALL (wall) SOMATIC SUBSTITUTIONS\n",
     "\nALL GENES (n = ", length(RefCDS), ")\n",
     file=OUTPUT$GLOBAL.TBL, sep="")
