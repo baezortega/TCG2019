@@ -4,13 +4,13 @@ _Adrian Baez-Ortega
 Transmissible Cancer Group, University of Cambridge  
 2018–2019_
 
-This repository contains custom R and Python scripts which can be used to replicate the analyses performed for the article "Somatic evolution and global expansion of an ancient transmissible cancer lineage" (Baez-Ortega _et al._, _Science_ 2019). The set-up and usage of the data and scripts are explained below.
+This repository contains custom R and Python scripts which can be used to replicate the analyses presented in the article "Somatic evolution and global expansion of an ancient transmissible cancer lineage" (Baez-Ortega _et al._, _Science_ 2019). The set-up and usage of the data and scripts are explained below.
 
 If you use some of these methods for your own research, please use the following citation:
 
 ---
 
-#### A. Baez-Ortega _et al_. Somatic evolution and global expansion of an ancient transmissible cancer lineage. _Science_ 365, eaau9923 (2019). DOI: 10.1126/science.aau9923.
+#### [A. Baez-Ortega _et al_. Somatic evolution and global expansion of an ancient transmissible cancer lineage. _Science_ 365, eaau9923 (2019). DOI: 10.1126/science.aau9923.](doi.org/10.1126/science.aau9923)
 
 ---
 
@@ -22,7 +22,7 @@ In order to run the scripts, the repository must first be cloned into a director
 git clone https://github.com/baezortega/TCG2019.git ~/Desktop/TCG2019
 ```
 
-Then, the necessary **supporting data** must be downloaded from the University of Cambridge Repository, accessible at https://doi.org/10.17863/CAM.24962. All the supporting data files must be downloaded and **placed in the `TCG2019/data/original` directory**.
+Then, the necessary **supporting data** must be downloaded from the University of Cambridge Repository, accessible at doi.org/10.17863/CAM.24962. All the supporting data files must be downloaded and **placed in the `TCG2019/data/original` directory**.
 
 The scripts are written to run on **[Python](https://www.python.org/)** version 2.7.10 or later (not Python 3) and **[R](https://www.r-project.org/)** version 3.3.3 or later. You should be able to check your current version of R by running one of the commands below (depending on your installation):
 
