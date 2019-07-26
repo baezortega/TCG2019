@@ -39,7 +39,7 @@ Although care has been taken to make the code distribution-independent, it is po
 
 Please note that some of the scripts may take considerable time to run, and some of the intermediate files generated will occupy up to a few gigabytes.
 
-Finally, before running the steps indicated below, we first need to open the terminal and navigate to the cloned directory, `TCG2019`, using the command below (replace the path below with your own one). 
+Finally, before running the steps indicated below, we first need to open the terminal and navigate to the cloned directory, `TCG2019`, using the command below (replace the path below with your own). 
 
 ```
 cd ~/Desktop/TCG2019
@@ -77,7 +77,7 @@ This step is carried out by the R script `2_ImportVariants.R`, which is located 
 Rscript scripts/2_ImportVariants.R
 ```
 
-This script produces an output RData file (`data/processed/VariantTables.RData`) containing the data tables for SNVs, indels and DNVs, together with indices to distinguish somatic ('tumour-only') and germline variants.
+This script produces an output RData file (`data/processed/VariantTables.RData`) containing the data tables for SNVs, indels and DNVs, together with indices to distinguish somatic ("tumour-only") and germline ("host") variants.
 
 ---
 
