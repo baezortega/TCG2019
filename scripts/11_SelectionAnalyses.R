@@ -274,7 +274,7 @@ cat("\nCalculating global dN/dS per gene ontology category:")
 keywords = sort(c("repair", "damage", "transcription", "translation|ribosom", "mitochondri",
                   "proteolysis", "metaboli", "exosom", "immun", "adhesion", "chromatin", "inflammat",
                   "vesicle", "proliferati", "apopto", "angiogenesis", "chromosom", "folding|folded",
-                   "cytoskeleton", "cell migration", "cell cycle", "phagosome|phagy"))
+                  "cytoskeleton", "cell migration", "cell cycle", "phagosome|phagy"))
 
 go.genes.dndscv = sapply(keywords, function(key) {
     gns = gene.names.db[match(unique(cf3.go$`Gene stable ID`[grep(key, cf3.go$`GO term name`)]),
