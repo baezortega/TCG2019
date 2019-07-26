@@ -66,7 +66,11 @@ cat("\n\n")
 
 
 # Load packages
-library(stringr)
+PACKAGES = c("stringr")
+cat("Loading packages:", paste(PACKAGES, collapse=", "), "\n")
+for (package in PACKAGES) {
+    suppressWarnings(library(package, character.only=TRUE))
+}
 
 
 # Load input data
@@ -99,7 +103,7 @@ plot.histogram = function(filename, index, snvs.table, max.x, max.y, keyword, xl
 
 
 # Plot coverage histograms per host and per tumour (only SNVs)
-cat("Plotting coverage histograms to output directory...\n")
+cat("\nPlotting coverage histograms to output directory...\n")
 plot.histogram(OUTPUT$COV.HIST.H, hosts, snvs.nr, 300, 7000, "Coverage", "Total read coverage")
 plot.histogram(OUTPUT$COV.HIST.T, tumours, snvs.nr, 300, 7000, "Coverage", "Total read coverage")
 

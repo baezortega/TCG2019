@@ -65,9 +65,11 @@ cat("\n\n")
 
 
 # Load packages
-library(ape)
-library(stringr)
-library(sigfit, quietly=T)
+PACKAGES = c("ape", "sigfit", "stringr")
+cat("Loading packages:", paste(PACKAGES, collapse=", "), "\n")
+for (package in PACKAGES) {
+    suppressWarnings(library(package, character.only=TRUE, quietly=TRUE))
+}
 
 
 # Constant: number of 'normal' phylogenetic groups

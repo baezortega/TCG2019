@@ -71,8 +71,11 @@ cat("\n\n")
 
 
 # Load packages
-library(stringr)
-
+PACKAGES = c("stringr")
+cat("Loading packages:", paste(PACKAGES, collapse=", "), "\n")
+for (package in PACKAGES) {
+    suppressWarnings(library(package, character.only=TRUE))
+}
 
 # Load input data
 cat("Loading data...\n")
@@ -102,7 +105,7 @@ load(INPUT$VAR.TABLES)
 # position correspondence table between CanFam2 and CanFam3.1, build a table with all SNVs
 # and the fields: CanFam3.1 chrom, CanFam3.1 position, CanFam2 chrom, CanFam2 position, 
 # integer total CN (24T), integer total CN (79T).
-cat("Assigning copy number estimates to all SNVs...\n")
+cat("\nAssigning copy number estimates to all SNVs...\n")
 
 cn.table.snvs = as.data.frame(t(
     sapply(1:nrow(cf2.pos.corresp), function(i) {

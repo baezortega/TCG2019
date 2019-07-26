@@ -61,7 +61,11 @@ cat("\n\n")
 
 
 # Load packages
-library(stringr)
+PACKAGES = c("stringr")
+cat("Loading packages:", paste(PACKAGES, collapse=", "), "\n")
+for (package in PACKAGES) {
+    suppressWarnings(library(package, character.only=TRUE))
+}
 
 
 # Subfunction: reverse complement
@@ -83,7 +87,7 @@ load(INPUT$VAR.ANNOT)
 load(INPUT$PHYLO.GROUPS)
 
 
-cat("Generating mutational spectrum of tumour-only dinucleotide variants...\n")
+cat("\nGenerating mutational spectrum of tumour-only dinucleotide variants...\n")
 
 # Isolate base changes
 dnvs.tonly = dnvs.metadata[tumour.only.dnvs.idx, ]
@@ -91,7 +95,6 @@ dnv.changes = t(sapply(1:nrow(dnvs.tonly), function(i) {
     c(str_split_fixed(dnvs.tonly[i, "REF"], "", 2), str_split_fixed(dnvs.tonly[i, "ALT"], "", 2), NA)
 }))
 colnames(dnv.changes) = c("REF1", "REF2", "ALT1", "ALT2", "STRAND")
-
 
 # Get variant strand from annotation
 # (collapsing available annotation for both bases)
@@ -212,7 +215,6 @@ mtext(side=2, "Mutations", line=3.5, cex=1.4)
 title(paste(sum(dnv.spectrum), "somatic dinucleotide mutations"), cex.main=1.5, line=-1)
 legend("topleft", legend=c("Transcribed strand", "Untranscribed strand"), 
        fill=strand.colours, border=strand.colours, bty="n", cex=1.3, inset=c(0.01, 0.06))
-
 invisible(dev.off())
 
 

@@ -72,10 +72,10 @@ cat("\n\n")
 
 
 # Load packages
-PACKAGES = c("stringr", "rstan", "coda")
+PACKAGES = c("coda", "rstan", "stringr")
 cat("Loading packages:", paste(PACKAGES, collapse=", "), "\n")
 for (package in PACKAGES) {
-    suppressPackageStartupMessages(library(package, character.only=T))
+    suppressWarnings(suppressMessages(library(package, character.only=TRUE)))
 }
 
 

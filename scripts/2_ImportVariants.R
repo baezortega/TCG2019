@@ -60,7 +60,11 @@ cat("\n\n")
 
 
 # Load packages
-library(stringr)
+PACKAGES = c("stringr")
+cat("Loading packages:", paste(PACKAGES, collapse=", "), "\n")
+for (package in PACKAGES) {
+    suppressWarnings(library(package, character.only=TRUE))
+}
 
 
 # Load data

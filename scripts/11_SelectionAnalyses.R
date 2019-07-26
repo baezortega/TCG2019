@@ -84,22 +84,11 @@ for (name in OUTPUT) {
 cat("\n\n")
 
 
-# Function for suppressing terminal output
-quiet = function(x) {
-    f = file(tempfile(), open="wt")
-    sink(f) 
-    sink(f, type="message")
-    on.exit(sink(type="message"))
-    on.exit(sink(), add=TRUE) 
-    suppressWarnings(invisible(force(x)))
-} 
-
-
 # Load packages
 PACKAGES = c("dndscv")
 cat("Loading packages:", paste(PACKAGES, collapse=", "), "\n")
 for (package in PACKAGES) {
-    quiet(library(package, character.only=T))
+    suppressWarnings(library(package, character.only=TRUE))
 }
 
 
@@ -176,7 +165,7 @@ mutations = mutations[!dnt.idx & !artefact.idx, ]
 
 
 ## (2) Run dNdScv on all genes (with CanFam3.1 covariates)
-cat("\nCalculating global and genewise dN/dS in all genes...\n")
+cat("\nCalculating global and genewise dN/dS in all genes:\n")
 
 dnds.all.cv = suppressWarnings(dndscv(mutations, refdb=INPUT$CF3.CDS, cv=cf3.covs,
                                       max_muts_per_gene_per_sample=Inf,
@@ -184,7 +173,7 @@ dnds.all.cv = suppressWarnings(dndscv(mutations, refdb=INPUT$CF3.CDS, cv=cf3.cov
 
 
 ## (3) Run dNdScv on essential genes
-cat("\nCalculating global dN/dS in essential genes...\n")
+cat("\nCalculating global dN/dS in essential genes:")
 
 # Create lists of essential genes (All, CN=1, CN>1)
 gene.names.db = sapply(RefCDS, function(x) x$gene_name)
@@ -214,7 +203,7 @@ names(dnds.essential.cv) = names(essential.genes.dndscv)
 
 
 ## (4) Run dNdScv per gene copy number group
-cat("\nCalculating global dN/dS per gene copy number...\n")
+cat("\nCalculating global dN/dS per gene copy number:")
 
 # Calculate mean CN per gene
 gene.cn = t(sapply(unique(annot.snvs.tonly$Gene), function(gene) {
@@ -259,7 +248,7 @@ names(dnds.cn.cv) = names(cn.groups.dndscv)
 
 
 ## (5) Run dNdScv per abundance quintile group
-cat("\nCalculating global dN/dS per transcript abundance quintile...\n")
+cat("\nCalculating global dN/dS per transcript abundance quintile:")
 
 # Make gene lists
 abundance.groups.dndscv = lapply(genes.per.quintile, function(genes) {
@@ -280,12 +269,12 @@ names(dnds.abundance.cv) = names(abundance.groups.dndscv)
 
 
 ## (6) Run dNdScv per GO group
-cat("\nCalculating global dN/dS per gene ontology category...\n")
+cat("\nCalculating global dN/dS per gene ontology category:")
 
-keywords = c("repair", "damage", "transcription", "translation|ribosom", "mitochondri",
-             "proteolysis", "metaboli", "exosom", "immun", "adhesion", "chromatin", "inflammat",
-             "vesicle", "proliferati", "apopto", "angiogenesis", "chromosom", "folding|folded",
-             "cytoskeleton", "cell migration", "cell cycle", "phagosome|phagy")
+keywords = sort(c("repair", "damage", "transcription", "translation|ribosom", "mitochondri",
+                  "proteolysis", "metaboli", "exosom", "immun", "adhesion", "chromatin", "inflammat",
+                  "vesicle", "proliferati", "apopto", "angiogenesis", "chromosom", "folding|folded",
+                   "cytoskeleton", "cell migration", "cell cycle", "phagosome|phagy"))
 
 go.genes.dndscv = sapply(keywords, function(key) {
     gns = gene.names.db[match(unique(cf3.go$`Gene stable ID`[grep(key, cf3.go$`GO term name`)]),
@@ -365,7 +354,7 @@ invisible(dev.off())
 
 
 ## (8) Output dN/dS tables
-cat("\nWriting dN/dS tables to output directory...\n")
+cat("Writing dN/dS tables to output directory...\n")
 types = c("wmis", "wnon", "wall")
 
 # We omit dN/dS estimates for splice-site mutations because of an intrinsic

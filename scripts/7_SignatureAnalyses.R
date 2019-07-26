@@ -67,10 +67,10 @@ cat("\n\n")
 
 
 # Load packages
-PACKAGES = c("stringr", "sigfit")
+PACKAGES = c("sigfit", "stringr")
 cat("Loading packages:", paste(PACKAGES, collapse=", "), "\n")
 for (package in PACKAGES) {
-    library(package, character.only=T, quietly=T)
+    suppressWarnings(library(package, character.only=TRUE, quietly=TRUE))
 }
 
 
@@ -82,7 +82,7 @@ load(INPUT$PHYLO.GROUPS)
 
 
 ## (1) Generate mutational spectrum of each phylogenetic group
-cat("Generating mutational spectra of phylogenetic groups...\n")
+cat("\nGenerating mutational spectra of phylogenetic groups...\n")
 
 # Build table containing group ID, ref base, alt base, and
 # trinucleotide context for all group-unique variants
@@ -210,7 +210,11 @@ refine.exposures = function(sigs.idx, groups.idx) {
     cat("\nRefitting", paste(rownames(signatures.final)[sigs.idx], collapse=", "),
         "to groups:", paste(group.ids[groups.idx], collapse=", "), "\n\n")
     
-    sigfit.fit = sigfit::fit_signatures(group.spectra[groups.idx, ],
+    spectra = group.spectra[groups.idx, ]
+    if (sum(groups.idx) == 1) {
+        spectra = t(as.matrix(spectra))
+    }
+    sigfit.fit = sigfit::fit_signatures(spectra,
                                         signatures.final[sigs.idx, ],
                                         iter=4000, warmup=2000, seed=1756,
                                         control=list(adapt_delta=0.85))
@@ -281,6 +285,7 @@ write.table(cbind("Mutation type"=colnames(signatures.final), t(signatures.final
 # C>T mutations in two groups of somatic variants:
 #   (a) Tumour-unique (private) variants, which are highly enriched in sig. 7 mutations
 #   (b) Pre-divergence ancestral variants, which are highly enriched in sig. A mutations
+cat("Plotting pentanucleotide spectra...\n")
 
 # Subfunction: reverse complement (strings)
 rev.comp = function(nucleotide.list) {

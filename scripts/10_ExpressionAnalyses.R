@@ -87,10 +87,10 @@ quiet = function(x) {
 
 
 # Load packages
-PACKAGES = c("tximport", "ensembldb", "DESeq2", "stringr", "sigfit")
+PACKAGES = c("DESeq2", "ensembldb", "sigfit", "stringr", "tximport")
 cat("Loading packages:", paste(PACKAGES, collapse=", "), "\n")
 for (package in PACKAGES) {
-    quiet(library(package, character.only=T))
+    suppressWarnings(suppressMessages(library(package, character.only=TRUE)))
 }
 
 
@@ -262,7 +262,7 @@ strand.bias.categ = lapply(1:ncol(annot.categories.527T.idx), function(j) {
                            annot.snvs.tonly$Strand[dec.idx]))
     }
     # Build strandwise catalogues
-    suppressWarnings(sigfit::build_catalogues(muts))
+    quiet(sigfit::build_catalogues(muts))
 })
 names(strand.bias.categ) = colnames(annot.categories.527T.idx)
 
@@ -284,7 +284,7 @@ for (i in 1:length(genes.per.quintile)) {
 }
 
 # Fit signatures to variants in each quintile
-counts.per.quintile = sigfit::build_catalogues(muts)
+counts.per.quintile = quiet(sigfit::build_catalogues(muts))
 
 quintile.fit = quiet(sigfit::fit_signatures(counts=counts.per.quintile,
                                             signatures=signatures.final[-4, ],
@@ -396,7 +396,7 @@ invisible(dev.off())
 
 
 # Save mean abundances and genes per abundance quintile and decile
-cat("Saving generated objects to file ", OUTPUT$RDATA, "...\n", sep="")
+cat("\nSaving generated objects to file ", OUTPUT$RDATA, "...\n", sep="")
 save(mean.abundances, abund.quintiles, abund.deciles, genes.per.quintile, genes.per.decile,
      file=OUTPUT$RDATA)
 
