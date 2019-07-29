@@ -22,7 +22,7 @@ In order to run the scripts, the repository must first be cloned into a director
 git clone https://github.com/baezortega/TCG2019.git ~/Desktop/TCG2019
 ```
 
-Then, the necessary **supporting data** must be downloaded from the University of Cambridge Repository, accessible at https://doi.org/10.17863/CAM.24962. All the supporting data files must be downloaded and **placed in the `TCG2019/data/original` directory**.
+Then, the necessary **supporting data** must be downloaded from the University of Cambridge Repository, accessible at **https://doi.org/10.17863/CAM.24962**. All the supporting data files must be downloaded and **placed in the `TCG2019/data/original` directory**.
 
 The scripts are written to run on **[Python](https://www.python.org/)** version 2.7.10 or later (not Python 3) and **[R](https://www.r-project.org/)** version 3.3.3 or later. You should be able to check your current version of R by running one of the commands below (depending on your installation):
 
