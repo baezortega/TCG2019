@@ -104,9 +104,9 @@ group.spectra = sigfit::build_catalogues(var.table)
 
 
 ## NB. The commented block of code below performs preliminary extraction of
-## N=3 signatures from the set of all spectra with >700 mutations, and plots 
-## the results. As these results were found to be suboptimal for some groups 
-## (notably A1), this step is ommited by default.
+## 2-5 signatures from the set of all spectra with >700 mutations, and 
+## plots the results for N=3 signatures. As these results were found to be
+## suboptimal for some groups (notably A1), this step is omitted by default.
 
 # # Extract mutational signatures from all groups with >700 mutations
 # # (i.e. all groups except 26, 39, 47, 55)
@@ -153,7 +153,11 @@ sigfit.extract.3 = sigfit::extract_signatures(counts, nsignatures=N,
                                               control=list(adapt_delta=0.85))
 
 # Retrieve and reorder extracted signatures
-signatures.1.5.7 = sigfit::retrieve_pars(sigfit.extract.3, "signatures")$mean[3:1, ]
+# For sigfit v2.x:
+signatures.1.5.7 = sigfit::retrieve_pars(sigfit.extract.3, "signatures")$mean[c(2, 1, 3), ]
+
+# For sigfit v1.x:
+# signatures.1.5.7 = sigfit::retrieve_pars(sigfit.extract.3, "signatures")$mean[3:1, ]
 
 
 ## (3) Extract the signatures accounting for the additional patterns in groups
@@ -174,10 +178,17 @@ cat("\nExtracting", N, "additional signatures from groups:",
     paste(group.ids[select.idx], collapse=", "), "\n\n")
 
 # (Using Jeffreys prior on signatures and exposures)
+# For sigfit v2.x:
 sigfit.fitext.2 = sigfit::fit_extract_signatures(counts, signatures=signatures.1.5.7,
-                                                 num_extra_sigs=N, exp_prior=0.5,
+                                                 num_extra_sigs=N,
+                                                 exp_prior=matrix(0.5, nrow=nrow(counts), N+3),
                                                  sig_prior=matrix(0.5, nrow=N, ncol=96),
                                                  iter=10000, warmup=3000, seed=1756)
+# For sigfit v1.x:
+# sigfit.fitext.2 = sigfit::fit_extract_signatures(counts, signatures=signatures.1.5.7,
+#                                                  num_extra_sigs=N, exp_prior=0.5,
+#                                                  sig_prior=matrix(0.5, nrow=N, ncol=96),
+#                                                  iter=10000, warmup=3000, seed=1756)
 
 # Retrieve and rename extracted signatures
 signatures.final = sigfit::retrieve_pars(sigfit.fitext.2, "signatures")$mean
@@ -185,9 +196,9 @@ rownames(signatures.final) = paste("Signature", c("1", "5", "7", "2*", "A"))
 
 
 ## NB. The commented block of code below performs preliminary re-fitting of all
-## extracted signatures to all phylogenetic groups to obtain preliminary signature 
-## exposures, and plots the results. As these results show that signatures 2* and 
-## A are not active in most groups, this step is ommited by default.
+## extracted signatures to all phylogenetic groups to obtain preliminary signature
+## exposures, and plots the results. Since these results show that signatures 2*
+## and A are inactive in most groups, this step is omitted by default.
 
 # # Fit mutational signatures to all groups
 # sigfit.fit.prelim = sigfit::fit_signatures(group.spectra, signatures.final,
@@ -223,7 +234,7 @@ refine.exposures = function(sigs.idx, groups.idx) {
 
 # Re-fit signatures {1, 5, 7} to all groups except {57, 58, A1, A2, A3}
 exposures.general = refine.exposures(1:3, !(group.ids %in% c("57", "58", "A1", "A2", "A3")))
-    
+
 # Re-fit signatures {1, 5, 7, 2*} to groups {57, 58}
 exposures.57.58 = refine.exposures(1:4, group.ids %in% c("57", "58"))
 
